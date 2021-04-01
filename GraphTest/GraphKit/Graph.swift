@@ -75,4 +75,7 @@ public struct Graph {
         mutableNodes[vIndex].edges.append(edge.reverse())
         self.nodes = mutableNodes
     }
+    public func getIndex(node: Node) -> Int {
+        return nodes.firstIndex(where: {$0.id == node.id})!
+    }
 }

@@ -37,8 +37,19 @@ public struct InfectionHandler {
             }
             graph.nodes[randomIndex].SIRState = SIRNodeStates.Infected
         }
+        addAntiVaxxers()
         iterationsDict[timeStamp] = graph
         timeStamp += 1
+    }
+    public mutating func addAntiVaxxers() {
+        if difficulty.antiVaxxers > 0 {
+            let new = graph
+            for _ in 0..<difficulty.antiVaxxers {
+                guard let n = new.nodes.randomElement(),
+                      n.SIRState != .Infected else { return }
+                addAntiVaxNode(node: n)
+            }
+        }
     }
     public mutating func nextStep() {
         let newGraph = infectNodes()
@@ -63,48 +74,30 @@ public struct InfectionHandler {
                         print("INVALID INDEX")
                         return graph
                     }
-                    print("infecting \(index)")
-                    newGraph.nodes[index].SIRState = .Infected
+                    if newGraph.nodes[index].SIRState != .Infected {
+                        print("node: \(node.id) infecting \(newGraph.nodes[index].id)")
+                        newGraph.nodes[index].SIRState = .Infected
+                    }
                 }
             }
         }
         return newGraph
     }
     public mutating func vaccinateNode(node: Node) {
-        var newGraph = graph
-        //removes vaccinated nodes
-//        newGraph.nodes.removeAll(where: {$0.id == node.id})
-//        for (nodeIndex, node) in newGraph.nodes.enumerated() {
-//            for (index, edge) in node.edges.enumerated() {
-//                if edge.u.id == node.id || edge.v.id == node.id {
-//                    var node2 = node
-//                    node2.edges.remove(at: index)
-//                    newGraph.nodes[nodeIndex] = node2
-//                }
-//            }
-//        }
-        //sets node to vaccinated
-        guard let index = newGraph.nodes.firstIndex(where: {$0.id == node.id}) else { return }
-        var n2 = newGraph.nodes[index]
-        n2.metaData = .vaccinated
-        newGraph.nodes[index] = node
-        graph = newGraph
-        iterationsDict[timeStamp] = newGraph
+        if vaccinesAdministered < self.difficulty.numberOfVaccines {
+            var newGraph = graph
+            //sets node to vaccinated
+            guard let index = newGraph.nodes.firstIndex(where: {$0.id == node.id}) else { return }
+            var n2 = newGraph.nodes[index]
+            n2.metaData = .vaccinated
+            newGraph.nodes[index] = node
+            graph = newGraph
+            vaccinesAdministered += 1
+            iterationsDict[timeStamp] = newGraph
+        }
     }
     public mutating func quarantineNode(node: Node) {
         var newGraph = graph
-        //removes vaccinated nodes
-//        newGraph.nodes.removeAll(where: {$0.id == node.id})
-//        for (nodeIndex, node) in newGraph.nodes.enumerated() {
-//            for (index, edge) in node.edges.enumerated() {
-//                if edge.u.id == node.id || edge.v.id == node.id {
-//                    var node2 = node
-//                    node2.edges.remove(at: index)
-//                    newGraph.nodes[nodeIndex] = node2
-//                }
-//            }
-//        }
-        //sets node to vaccinated
         guard let index = newGraph.nodes.firstIndex(where: {$0.id == node.id}) else { return }
         var n2 = newGraph.nodes[index]
         n2.metaData = .vaccinated
@@ -112,7 +105,7 @@ public struct InfectionHandler {
         graph = newGraph
         iterationsDict[timeStamp] = newGraph
     }
-    public mutating func antiVaxNode(node: Node) {
+    public mutating func addAntiVaxNode(node: Node) {
         var newGraph = graph
 
         
@@ -136,42 +129,4 @@ public struct InfectionHandler {
         graph = newGraph
         iterationsDict[timeStamp] = newGraph
     }
-}
-public struct Difficulty {
-//    public var numberOfNodes: Int
-    public var numberOfStartingInfected: Int
-    public var infectionRate: Double
-    public var numberOfVaccines: Int
-    public var difficultyLevel: DifficultyLevel
-    public init(difficultyLevel: DifficultyLevel) {
-        switch difficultyLevel {
-        case .easy:
-            self.numberOfStartingInfected = 1
-            infectionRate = 0.7
-            numberOfVaccines = 5
-            self.difficultyLevel = difficultyLevel
-        case .medium:
-            self.numberOfStartingInfected = 2
-            infectionRate = 0.7
-            numberOfVaccines = 7
-            self.difficultyLevel = difficultyLevel
-        case .hard:
-            self.numberOfStartingInfected = 3
-            infectionRate = 0.7
-            numberOfVaccines = 15
-            self.difficultyLevel = difficultyLevel
-            
-        case .custom(let num, let iR, let vacc):
-            self.numberOfStartingInfected = num
-            infectionRate = iR
-            numberOfVaccines = vacc
-            self.difficultyLevel = difficultyLevel
-        }
-    }
-}
-public enum DifficultyLevel {
-    case easy
-    case medium
-    case hard
-    case custom(Int, Double, Int)
 }
