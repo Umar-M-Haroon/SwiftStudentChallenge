@@ -14,6 +14,19 @@
 		1D86A5402615945B00863F3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D86A53F2615945B00863F3D /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		1DDF835626190BFC009B8840 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		1D86A5332615945A00863F3D /* ARTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D86A5362615945A00863F3D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -74,6 +87,7 @@
 				1D86A52F2615945A00863F3D /* Sources */,
 				1D86A5302615945A00863F3D /* Frameworks */,
 				1D86A5312615945A00863F3D /* Resources */,
+				1DDF835626190BFC009B8840 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

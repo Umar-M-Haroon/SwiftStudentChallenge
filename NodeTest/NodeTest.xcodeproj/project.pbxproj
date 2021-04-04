@@ -14,6 +14,7 @@
 		1D86A51A261591E600863F3D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D86A518261591E600863F3D /* MainMenu.xib */; };
 		1D86A51D261591E600863F3D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D86A51B261591E600863F3D /* Main.storyboard */; };
 		1D86A527261591FB00863F3D /* Reality.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = 1D86A526261591FB00863F3D /* Reality.rcproject */; };
+		1DD1C10626181BB300941BD2 /* HeadingPitchBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1C10526181BB300941BD2 /* HeadingPitchBank.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		1D86A51E261591E600863F3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1D86A51F261591E600863F3D /* NodeTest.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NodeTest.entitlements; sourceTree = "<group>"; };
 		1D86A526261591FB00863F3D /* Reality.rcproject */ = {isa = PBXFileReference; lastKnownFileType = file.rcproject; name = Reality.rcproject; path = ../../Reality.rcproject; sourceTree = "<group>"; };
+		1DD1C10526181BB300941BD2 /* HeadingPitchBank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadingPitchBank.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 			children = (
 				1D86A510261591E400863F3D /* AppDelegate.swift */,
 				1D86A512261591E400863F3D /* GameViewController.swift */,
+				1DD1C10526181BB300941BD2 /* HeadingPitchBank.swift */,
 				1D86A514261591E400863F3D /* Experience.rcproject */,
 				1D86A526261591FB00863F3D /* Reality.rcproject */,
 				1D86A516261591E600863F3D /* Assets.xcassets */,
@@ -145,6 +148,7 @@
 				1D86A527261591FB00863F3D /* Reality.rcproject in Sources */,
 				1D86A513261591E400863F3D /* GameViewController.swift in Sources */,
 				1D86A511261591E400863F3D /* AppDelegate.swift in Sources */,
+				1DD1C10626181BB300941BD2 /* HeadingPitchBank.swift in Sources */,
 				1D86A515261591E400863F3D /* Experience.rcproject in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
