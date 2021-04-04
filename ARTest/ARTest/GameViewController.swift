@@ -12,8 +12,9 @@ class GameViewController: UIViewController {
     
     @IBOutlet var arView: ARView!
     var defaultSphereMaterial = SimpleMaterial(color: .darkGray, isMetallic: false)
-    var metalMaterial = SimpleMaterial(color: .blue, isMetallic: false)
+    var metalMaterial = SimpleMaterial(color: .gray, isMetallic: true)
     var sphereRadius: Float = 0.0127 // half an inch or 1.27 cm
+    var sphereObj = ModelEntity(mesh: .generateSphere(radius: 0.0127), materials: [SimpleMaterial(color: .darkGray, isMetallic: true)])
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -48,7 +49,7 @@ class GameViewController: UIViewController {
 //        let sphere = addSphere()
 ////        anchorEntity.addChild(sphere)
 //        anchorEntity.addChild(plane)
-        let t = generateNetwork(n: 100)
+        let t = generateNetwork(n: 25)
 //        let y = testLoad2Spheres1Edge()
         arView.scene.anchors.append(t)
 //        arView.installGestures(.all, for: t)
@@ -141,11 +142,9 @@ class GameViewController: UIViewController {
     func generateNetwork(n: Int) -> AnchorEntity {
         let anchorEntity = AnchorEntity(plane: .horizontal, classification: .any, minimumBounds: SIMD2<Float>(0.3,0.3))
         for _ in 0..<(n/2)  {
-            let sphere = MeshResource.generateSphere(radius: sphereRadius)
-            let sphere2 = MeshResource.generateSphere(radius: sphereRadius)
-            let sphereEntity = ModelEntity(mesh: sphere, materials: [defaultSphereMaterial])
+            let sphereEntity = sphereObj.clone(recursive: true)
             anchorEntity.addChild(sphereEntity, preservingWorldTransform: true)
-            let sphereEntity2 = ModelEntity(mesh: sphere2, materials: [defaultSphereMaterial])
+            let sphereEntity2 = sphereObj.clone(recursive: true)
             let randMax: Float = Float(n) / 2.0
             let randMin: Float = 4.0
             let randomTransform = SIMD3<Float>(
@@ -162,7 +161,7 @@ class GameViewController: UIViewController {
             let diff = (randomTransform2 - randomTransform)
             let dist = sqrt(diff.x * diff.x + diff.y * diff.y + diff.z * diff.z)
             let edge = MeshResource.generateBox(size: SIMD3<Float>(sphereRadius*0.85, sphereRadius*0.85, dist), cornerRadius: (sphereRadius*0.85))
-            let edgeEntity = ModelEntity(mesh: edge, materials: [defaultSphereMaterial])
+            let edgeEntity = ModelEntity(mesh: edge, materials: [metalMaterial])
             anchorEntity.addChild(sphereEntity2, preservingWorldTransform: true)
             anchorEntity.addChild(edgeEntity, preservingWorldTransform: true)
             
