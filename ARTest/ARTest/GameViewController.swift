@@ -7,7 +7,7 @@
 
 import UIKit
 import RealityKit
-
+import InfectionGraphKit
 class GameViewController: UIViewController {
     
     @IBOutlet var arView: ARView!
@@ -15,163 +15,81 @@ class GameViewController: UIViewController {
     var metalMaterial = SimpleMaterial(color: .gray, isMetallic: true)
     var sphereRadius: Float = 0.0127 // half an inch or 1.27 cm
     var sphereObj = ModelEntity(mesh: .generateSphere(radius: 0.0127), materials: [SimpleMaterial(color: .darkGray, isMetallic: true)])
+    var ids: [String] = []
+    let anchorEntity = AnchorEntity(plane: .horizontal, classification: .any, minimumBounds: SIMD2<Float>(0.3,0.3))
+    var numberOfNodes = 100
+    var infectionHandler: InfectionHandler!
+    var graph: Graph!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        let sphere = MeshResource.generateSphere(radius: 0.15)
-//        let anchorEntity = AnchorEntity(world: Transform().matrix)
-//        let sphereEntity = ModelEntity(mesh: sphere, materials: [metalMaterial])
-//        anchorEntity.addChild(sphereEntity)
-////        arView.scene.anchors.append(sphere)
-//        let sphere2 = MeshResource.generateSphere(radius: 0.15)
-//        let sphereEntity2 = ModelEntity(mesh: sphere2, materials: [metalMaterial])
-//        sphereEntity.transform.translation += SIMD3<Float>(0.6, 0, 0.0)
-//        anchorEntity.addChild(sphereEntity2)
-//        let edgeBox = MeshResource.generateBox(size: SIMD3<Float>(sphereEntity.position(relativeTo: sphereEntity2).x, 0.05, sphereEntity.position(relativeTo: sphereEntity2).z), cornerRadius: 0.025)
-//        let edgeMaterial = SimpleMaterial(color: .lightGray, isMetallic: true)
-//
-//        let edgeBoxEntity = ModelEntity(mesh: edgeBox, materials: [edgeMaterial])
-//        anchorEntity.addChild(edgeBoxEntity)
-//        edgeBoxEntity.transform.translation += SIMD3<Float>(0.30, 0, 0.0)
-//        arView.scene.anchors.append(anchorEntity)
-//
-//        let sphere3 = MeshResource.generateSphere(radius: 0.15)
-//        let sphereEntity3 = ModelEntity(mesh: sphere3, materials: [metalMaterial])
-//        sphereEntity3.transform.translation += SIMD3<Float>(0.3, 0.3, 0.3)
-//        anchorEntity.addChild(sphereEntity3)
-//
-//        let edgeBox2 = MeshResource.generateBox(size: SIMD3<Float>(sphereEntity.position(relativeTo: sphereEntity2).x, 0.05, sphereEntity.position(relativeTo: sphereEntity2).z), cornerRadius: 0.025)
-//        let edgeBoxEntity2 = ModelEntity(mesh: edgeBox2, materials: [edgeMaterial])
-//        anchorEntity.addChild(edgeBoxEntity)
-//        anchorEntity.addChild(edgeBoxEntity2)
-//        edgeBoxEntity.transform.translation += SIMD3<Float>(0.30, 0, 0.0)
-//        let plane = generatePlane()
-//        let sphere = addSphere()
-////        anchorEntity.addChild(sphere)
-//        anchorEntity.addChild(plane)
-        let t = generateNetwork(n: 25)
+        graph = Graph(numberOfNodes: numberOfNodes)
+        infectionHandler = InfectionHandler(graph: graph, difficulty: .init(difficultyLevel: .hard))
+        generateNetwork()
 //        let y = testLoad2Spheres1Edge()
-        arView.scene.anchors.append(t)
+        arView.scene.anchors.append(anchorEntity)
 //        arView.installGestures(.all, for: t)
         
-    }
-    func testLoad2Spheres1Edge() -> AnchorEntity {
-        let sphere = MeshResource.generateSphere(radius: 0.03)
-        let anchorEntity = AnchorEntity(plane: .horizontal, classification: .any, minimumBounds: SIMD2<Float>(0.0, 0.0))
-        let sphereEntity = ModelEntity(mesh: sphere, materials: [defaultSphereMaterial])
-        anchorEntity.addChild(sphereEntity,preservingWorldTransform: true)
-        arView.scene.anchors.append(anchorEntity)
-        let sphere3 = MeshResource.generateSphere(radius: 0.03)
-        let sphereEntity3 = ModelEntity(mesh: sphere3, materials: [metalMaterial])
-        sphereEntity3.transform.translation += SIMD3<Float>(0.0, 0, 0.1)
-//        print(midpoint(r1: sphereEntity, r2: sphereEntity3))
-        let edgeBox = MeshResource.generateBox(size: SIMD3<Float>(0.025, 0.025, addEdge(r1: sphereEntity, r2: sphereEntity3)), cornerRadius: 0.025)
-        
-        let edgeMaterial = SimpleMaterial(color: .lightGray, isMetallic: true)
-        
-        let edge = ModelEntity(mesh: edgeBox, materials: [edgeMaterial])
-        anchorEntity.addChild(sphereEntity3, preservingWorldTransform: true)
-        anchorEntity.addChild(edge, preservingWorldTransform: true)
-        
-        sphereEntity.transform.translation +=  SIMD3<Float>(0, 0.05, 0)
-        edge.look(at: sphereEntity3.position, from: sphereEntity.position, relativeTo: edge)
-        edge.setPosition(midpoint(r1: sphereEntity, r2: sphereEntity3), relativeTo: nil)
-        return anchorEntity
-    }
-    func testLoad3Spheres2Edge() -> AnchorEntity {
-        //sphere at 0,0,0
-        let sphere = MeshResource.generateSphere(radius: sphereRadius)
-        let anchorEntity = AnchorEntity(world: Transform().matrix)
-        let sphereEntity = ModelEntity(mesh: sphere, materials: [defaultSphereMaterial])
-        anchorEntity.addChild(sphereEntity)
-//        arView.scene.anchors.append(sphere)
-        arView.scene.anchors.append(anchorEntity)
-
-        //sphere at 0.1, 0.1, 0.1
-        let sphere3 = MeshResource.generateSphere(radius: 0.03)
-        let sphereEntity3 = ModelEntity(mesh: sphere3, materials: [metalMaterial])
-        sphereEntity3.transform.translation += SIMD3<Float>(0.1, 0.1, 0.1)
-        anchorEntity.addChild(sphereEntity3)
-        //edge between sphere 0,0,0 and 0.1,0.1, 0.1
-        let edgeBox = MeshResource.generateBox(size: SIMD3<Float>(0.025, 0.025, addEdge(r1: sphereEntity, r2: sphereEntity3)), cornerRadius: 0.025)
-        
-        let edgeMaterial = SimpleMaterial(color: .lightGray, isMetallic: true)
-        
-        let edge = ModelEntity(mesh: edgeBox, materials: [edgeMaterial])
-
-        edge.setPosition(midpoint(r1: sphereEntity, r2: sphereEntity3), relativeTo: nil)
-        edge.look(at: sphereEntity3.position, from: edge.position, relativeTo: sphereEntity)
-        
-        anchorEntity.addChild(edge)
-        
-        //sphere at 0,0.4,0.0
-        let sphere2 = MeshResource.generateSphere(radius: 0.03)
-        let sphereEntity2 = ModelEntity(mesh: sphere2, materials: [metalMaterial])
-        sphereEntity2.transform.translation += SIMD3<Float>(0, 0.4, 0)
-        anchorEntity.addChild(sphereEntity2)
-        
-        //edge between 0,0,0 and 0.0, 0.4, 0.0
-        //should be between sphereEntity and sphereEntity2
-        let edgeBox2 = MeshResource.generateBox(size: SIMD3<Float>(0.025, 0.025, addEdge(r1: sphereEntity, r2: sphereEntity2)), cornerRadius: 0.025)
-        
-        
-        
-        let edge2 = ModelEntity(mesh: edgeBox2, materials: [edgeMaterial])
-    
-        print(-midpoint(r1: sphereEntity2, r2: sphereEntity))
-        edge2.transform.translation += -midpoint(r1: sphereEntity2, r2: sphereEntity)
-        edge2.look(at: sphereEntity2.position, from: edge.position, relativeTo: sphereEntity)
-        
-        anchorEntity.addChild(edge2)
-//        sphereEntity.addChild(edge)
-//        edgeBoxEntity.transform.translation += SIMD3<Float>(0.30, 0, 0.0)
-        return anchorEntity
-    }
-    func addEdge(r1: ModelEntity, r2: ModelEntity) -> Float {
-        let diff = abs(r2.position - r1.position)
-        return sqrt(diff.x * diff.x + diff.y * diff.y + diff.z * diff.z)
-    }
-    func addSphere() -> ModelEntity {
-        let sphere = MeshResource.generateSphere(radius: 50.27)
-        return ModelEntity(mesh: sphere, materials: [defaultSphereMaterial])
     }
     func midpoint(r1: ModelEntity, r2: ModelEntity) -> SIMD3<Float> {
         let diff = r2.position + r1.position
         return diff/2
     }
-    func generateNetwork(n: Int) -> AnchorEntity {
-        let anchorEntity = AnchorEntity(plane: .horizontal, classification: .any, minimumBounds: SIMD2<Float>(0.3,0.3))
-        for _ in 0..<(n/2)  {
+    func generateNetwork() {
+        addNodes(numberOfNodes: self.numberOfNodes)
+        addEdges(graph: self.graph)
+        
+    }
+    func addEdgeBetween(r1: String, r2: String) {
+        guard
+            let sphere = anchorEntity.findEntity(named: r1) as? ModelEntity,
+            let sphere2 = anchorEntity.findEntity(named: r2) as? ModelEntity else { return }
+        let diff = (sphere2.position - sphere.position)
+        let dist = sqrt(diff.x * diff.x + diff.y * diff.y + diff.z * diff.z)
+        let edge = MeshResource.generateBox(size: SIMD3<Float>(sphereRadius*0.85, sphereRadius*0.85, dist), cornerRadius: (sphereRadius*0.85))
+        let edgeEntity = ModelEntity(mesh: edge, materials: [metalMaterial])
+        edgeEntity.name = "Edge: \(r1) \(r2)"
+        edgeEntity.look(at: sphere2.position, from: sphere.position, relativeTo: edgeEntity)
+        edgeEntity.setPosition(midpoint(r1: sphere, r2: sphere2), relativeTo: nil)
+        anchorEntity.addChild(edgeEntity)
+        
+    }
+    func addNodes(numberOfNodes: Int) {
+        
+//        let anchorEntity = AnchorEntity(plane: .horizontal, classification: .any, minimumBounds: SIMD2<Float>(0.3,0.3))
+        for n in 0..<numberOfNodes {
             let sphereEntity = sphereObj.clone(recursive: true)
-            anchorEntity.addChild(sphereEntity, preservingWorldTransform: true)
-            let sphereEntity2 = sphereObj.clone(recursive: true)
-            let randMax: Float = Float(n) / 2.0
-            let randMin: Float = 4.0
+            let randMax: Float = Float(numberOfNodes) * 2
+            let randMin: Float = Float(numberOfNodes) / 2.0
             let randomTransform = SIMD3<Float>(
                 Float.random(in: (sphereRadius*randMin)...(sphereRadius*randMax)),
-                Float.random(in: (sphereRadius*randMin)...(sphereRadius*randMax / 2)),
+                Float.random(in: (sphereRadius)...(sphereRadius*randMin)),
                 Float.random(in: (sphereRadius*randMin)...(sphereRadius*randMax)))
-            let randomTransform2 = SIMD3<Float>(
-                Float.random(in: (sphereRadius*randMin)...(sphereRadius*randMax)),
-                Float.random(in: (sphereRadius*randMin)...(sphereRadius*randMax/2)),
-                Float.random(in: (sphereRadius*randMin)...(sphereRadius*randMax)))
-            
-//            print(addEdge(r1: sphereEntity, r2: sphereEntity2))
-            sphereEntity2.transform.translation += randomTransform2
-            let diff = (randomTransform2 - randomTransform)
-            let dist = sqrt(diff.x * diff.x + diff.y * diff.y + diff.z * diff.z)
-            let edge = MeshResource.generateBox(size: SIMD3<Float>(sphereRadius*0.85, sphereRadius*0.85, dist), cornerRadius: (sphereRadius*0.85))
-            let edgeEntity = ModelEntity(mesh: edge, materials: [metalMaterial])
-            anchorEntity.addChild(sphereEntity2, preservingWorldTransform: true)
-            anchorEntity.addChild(edgeEntity, preservingWorldTransform: true)
-            
+            //            print(addEdge(r1: sphereEntity, r2: sphereEntity2))
             sphereEntity.transform.translation += randomTransform
-            edgeEntity.look(at: sphereEntity2.position, from: sphereEntity.position, relativeTo: edgeEntity)
-            edgeEntity.setPosition(midpoint(r1: sphereEntity, r2: sphereEntity2), relativeTo: nil)
+            sphereEntity.transform.scale += SIMD3<Float>(Float(graph.nodes[n].degree()),Float(graph.nodes[n].degree()),Float(graph.nodes[n].degree()))
+            sphereEntity.name = "Node: \(graph.nodes[n].id)"
+            anchorEntity.addChild(sphereEntity, preservingWorldTransform: true)
         }
-        return anchorEntity
     }
-//    func generateEdge() -> ModelEntity {
-//
-//    }
+    func addEdges(graph: Graph) {
+        for node in graph.nodes {
+            for edge in node.edges {
+                let sphereID = "Node: \(edge.u.id)"
+                let sphere2ID = "Node: \(edge.v.id)"
+                let edgeID = "Edge: \(sphereID) \(sphere2ID)"
+                let reversedEdgeID = "Edge: \(sphere2ID) \(sphereID)"
+                if !checkForEdge(edgeID, reversedEdgeID) {
+                    addEdgeBetween(r1: sphereID, r2: sphere2ID)
+                }
+            }
+        }
+    }
+    func checkForEdge(_ edges: String...) -> Bool {
+        for edge in edges {
+            if anchorEntity.findEntity(named: edge) as? ModelEntity != nil {
+                return true
+            }
+        }
+        return false
+    }
 }

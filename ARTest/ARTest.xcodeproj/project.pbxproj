@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,6 +12,7 @@
 		1D86A53C2615945A00863F3D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D86A53A2615945A00863F3D /* Main.storyboard */; };
 		1D86A53E2615945A00863F3D /* Experience.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = 1D86A53D2615945A00863F3D /* Experience.rcproject */; };
 		1D86A5402615945B00863F3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D86A53F2615945B00863F3D /* Assets.xcassets */; };
+		1D980364261D7F0100E89247 /* InfectionGraphKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1D980363261D7F0100E89247 /* InfectionGraphKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -42,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D980364261D7F0100E89247 /* InfectionGraphKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,6 +96,9 @@
 			dependencies = (
 			);
 			name = ARTest;
+			packageProductDependencies = (
+				1D980363261D7F0100E89247 /* InfectionGraphKit */,
+			);
 			productName = ARTest;
 			productReference = 1D86A5332615945A00863F3D /* ARTest.app */;
 			productType = "com.apple.product-type.application";
@@ -121,6 +126,9 @@
 				Base,
 			);
 			mainGroup = 1D86A52A2615945A00863F3D;
+			packageReferences = (
+				1D980362261D7F0100E89247 /* XCRemoteSwiftPackageReference "InfectionGraphKit" */,
+			);
 			productRefGroup = 1D86A5342615945A00863F3D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -343,6 +351,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1D980362261D7F0100E89247 /* XCRemoteSwiftPackageReference "InfectionGraphKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Umar-M-Haroon/InfectionGraphKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1D980363261D7F0100E89247 /* InfectionGraphKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1D980362261D7F0100E89247 /* XCRemoteSwiftPackageReference "InfectionGraphKit" */;
+			productName = InfectionGraphKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1D86A52B2615945A00863F3D /* Project object */;
 }
