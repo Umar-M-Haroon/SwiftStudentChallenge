@@ -62,8 +62,8 @@
             filePath = "ARTest/GameViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
             landmarkName = "addEdges(graph:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -81,6 +81,22 @@
             startingLineNumber = "53"
             endingLineNumber = "53"
             landmarkName = "addEdgeBetween(r1:r2:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DF58C72C-61CB-4782-BC3F-CB1CF406FF57"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ARTest/GameViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
+            landmarkName = "touchesBegan(_:with:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

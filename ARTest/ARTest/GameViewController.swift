@@ -17,7 +17,7 @@ class GameViewController: UIViewController {
     var sphereObj = ModelEntity(mesh: .generateSphere(radius: 0.0127), materials: [SimpleMaterial(color: .darkGray, isMetallic: true)])
     var ids: [String] = []
     let anchorEntity = AnchorEntity(plane: .horizontal, classification: .any, minimumBounds: SIMD2<Float>(0.3,0.3))
-    var numberOfNodes = 100
+    var numberOfNodes = 30
     var infectionHandler: InfectionHandler!
     var graph: Graph!
     override func viewDidLoad() {
@@ -66,7 +66,8 @@ class GameViewController: UIViewController {
                 Float.random(in: (sphereRadius*randMin)...(sphereRadius*randMax)))
             //            print(addEdge(r1: sphereEntity, r2: sphereEntity2))
             sphereEntity.transform.translation += randomTransform
-            sphereEntity.transform.scale += SIMD3<Float>(Float(graph.nodes[n].degree()),Float(graph.nodes[n].degree()),Float(graph.nodes[n].degree()))
+            sphereEntity.collision = CollisionComponent(shapes: [ShapeResource.generateSphere(radius: sphereRadius)])
+            sphereEntity.transform.scale += SIMD3<Float>(Float(graph.nodes[n].degree() * numberOfNodes/100),Float(graph.nodes[n].degree()*numberOfNodes/100),Float(graph.nodes[n].degree()*numberOfNodes/100))
             sphereEntity.name = "Node: \(graph.nodes[n].id)"
             anchorEntity.addChild(sphereEntity, preservingWorldTransform: true)
         }
@@ -91,5 +92,14 @@ class GameViewController: UIViewController {
             }
         }
         return false
+    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        guard let touchPoint = touches.first?.location(in: arView) else { return }
+        guard let test = arView.entity(at: touchPoint) as? ModelEntity else {
+            print("Nothing on this touch")
+            return
+        }
+        test.model?.materials = [SimpleMaterial(color: .green, isMetallic: false)]
     }
 }
