@@ -3,32 +3,27 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D7470362622D71F00BBE197 /* InfectionGraphKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1D7470352622D71F00BBE197 /* InfectionGraphKit */; };
 		1D86A511261591E400863F3D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D86A510261591E400863F3D /* AppDelegate.swift */; };
 		1D86A513261591E400863F3D /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D86A512261591E400863F3D /* GameViewController.swift */; };
-		1D86A515261591E400863F3D /* Experience.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = 1D86A514261591E400863F3D /* Experience.rcproject */; };
 		1D86A517261591E600863F3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D86A516261591E600863F3D /* Assets.xcassets */; };
 		1D86A51A261591E600863F3D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D86A518261591E600863F3D /* MainMenu.xib */; };
 		1D86A51D261591E600863F3D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D86A51B261591E600863F3D /* Main.storyboard */; };
-		1D86A527261591FB00863F3D /* Reality.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = 1D86A526261591FB00863F3D /* Reality.rcproject */; };
-		1DD1C10626181BB300941BD2 /* HeadingPitchBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD1C10526181BB300941BD2 /* HeadingPitchBank.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1D86A50D261591E400863F3D /* NodeTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NodeTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D86A510261591E400863F3D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1D86A512261591E400863F3D /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
-		1D86A514261591E400863F3D /* Experience.rcproject */ = {isa = PBXFileReference; lastKnownFileType = file.rcproject; path = Experience.rcproject; sourceTree = "<group>"; };
 		1D86A516261591E600863F3D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1D86A519261591E600863F3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		1D86A51C261591E600863F3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1D86A51E261591E600863F3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1D86A51F261591E600863F3D /* NodeTest.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NodeTest.entitlements; sourceTree = "<group>"; };
-		1D86A526261591FB00863F3D /* Reality.rcproject */ = {isa = PBXFileReference; lastKnownFileType = file.rcproject; name = Reality.rcproject; path = ../../Reality.rcproject; sourceTree = "<group>"; };
-		1DD1C10526181BB300941BD2 /* HeadingPitchBank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadingPitchBank.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +31,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D7470362622D71F00BBE197 /* InfectionGraphKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,9 +59,6 @@
 			children = (
 				1D86A510261591E400863F3D /* AppDelegate.swift */,
 				1D86A512261591E400863F3D /* GameViewController.swift */,
-				1DD1C10526181BB300941BD2 /* HeadingPitchBank.swift */,
-				1D86A514261591E400863F3D /* Experience.rcproject */,
-				1D86A526261591FB00863F3D /* Reality.rcproject */,
 				1D86A516261591E600863F3D /* Assets.xcassets */,
 				1D86A518261591E600863F3D /* MainMenu.xib */,
 				1D86A51B261591E600863F3D /* Main.storyboard */,
@@ -91,6 +84,9 @@
 			dependencies = (
 			);
 			name = NodeTest;
+			packageProductDependencies = (
+				1D7470352622D71F00BBE197 /* InfectionGraphKit */,
+			);
 			productName = NodeTest;
 			productReference = 1D86A50D261591E400863F3D /* NodeTest.app */;
 			productType = "com.apple.product-type.application";
@@ -118,6 +114,9 @@
 				Base,
 			);
 			mainGroup = 1D86A504261591E400863F3D;
+			packageReferences = (
+				1D7470342622D71F00BBE197 /* XCRemoteSwiftPackageReference "InfectionGraphKit" */,
+			);
 			productRefGroup = 1D86A50E261591E400863F3D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -145,11 +144,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D86A527261591FB00863F3D /* Reality.rcproject in Sources */,
 				1D86A513261591E400863F3D /* GameViewController.swift in Sources */,
 				1D86A511261591E400863F3D /* AppDelegate.swift in Sources */,
-				1DD1C10626181BB300941BD2 /* HeadingPitchBank.swift in Sources */,
-				1D86A515261591E400863F3D /* Experience.rcproject in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,6 +352,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1D7470342622D71F00BBE197 /* XCRemoteSwiftPackageReference "InfectionGraphKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Umar-M-Haroon/InfectionGraphKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.7;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1D7470352622D71F00BBE197 /* InfectionGraphKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1D7470342622D71F00BBE197 /* XCRemoteSwiftPackageReference "InfectionGraphKit" */;
+			productName = InfectionGraphKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1D86A505261591E400863F3D /* Project object */;
 }
