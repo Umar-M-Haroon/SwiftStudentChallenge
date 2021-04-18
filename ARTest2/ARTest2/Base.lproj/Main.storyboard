@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gdc-Sd-jBQ">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18092"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="0L3-Zx-Z0Q">
+            <objects>
+                <viewController id="gdc-Sd-jBQ" customClass="ViewController" customModule="ARTest2" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xAC-bx-nuS"/>
+                        <viewControllerLayoutGuide type="bottom" id="NXx-2f-V1L"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="top" insetsLayoutMarginsFromSafeArea="NO" id="P82-mr-ggG">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <arView multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tK1-0l-BQl">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
+                            </arView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="80Z-dT-CHd">
+                                <rect key="frame" x="314" y="0.0" width="100" height="125"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="LVb-Bb-QIe">
+                                    <rect key="frame" x="0.0" y="0.0" width="100" height="125"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="J6h-9E-Ixo">
+                                            <rect key="frame" x="4" y="4" width="92" height="117"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Vaccines Left" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eRJ-W9-gvY">
+                                                    <rect key="frame" x="2.5" y="0.0" width="87" height="89.5"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iFg-hX-JQ1">
+                                                    <rect key="frame" x="25.5" y="96.5" width="41.5" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="J6h-9E-Ixo" secondAttribute="trailing" constant="4" id="3lo-l6-wWd"/>
+                                        <constraint firstItem="J6h-9E-Ixo" firstAttribute="leading" secondItem="LVb-Bb-QIe" secondAttribute="leading" constant="4" id="MhI-T8-IDx"/>
+                                        <constraint firstItem="J6h-9E-Ixo" firstAttribute="top" secondItem="LVb-Bb-QIe" secondAttribute="top" constant="4" id="hF8-hh-Vjw"/>
+                                        <constraint firstAttribute="bottom" secondItem="J6h-9E-Ixo" secondAttribute="bottom" constant="4" id="vLV-ll-bhZ"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                            <integer key="value" value="20"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="125" id="5O4-OK-yTl"/>
+                                    <constraint firstAttribute="width" constant="100" id="w1F-0b-o4Y"/>
+                                </constraints>
+                                <blurEffect style="regular"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </visualEffectView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eYN-Ka-5by">
+                                <rect key="frame" x="0.0" y="813" width="414" height="49"/>
+                                <items>
+                                    <barButtonItem style="plain" id="dDt-PA-iY9">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="hvR-qB-adA">
+                                            <rect key="frame" x="20" y="10.5" width="68" height="33"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <state key="normal" title="Difficulty"/>
+                                            <connections>
+                                                <action selector="difficultyButtonPressedWithSender:" destination="gdc-Sd-jBQ" eventType="touchUpInside" id="L82-4X-1dK"/>
+                                            </connections>
+                                        </button>
+                                    </barButtonItem>
+                                    <barButtonItem title="Item" style="plain" id="VUA-MZ-iyt">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="X55-Y6-6Pu">
+                                            <rect key="frame" x="338" y="10.5" width="56" height="33"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <state key="normal" title="Restart">
+                                                <color key="titleColor" name="AccentColor"/>
+                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="22"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="resetButtonPressed:" destination="gdc-Sd-jBQ" eventType="touchUpInside" id="Bf8-ns-WjM"/>
+                                            </connections>
+                                        </button>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="rZh-jL-brC"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="eYN-Ka-5by" secondAttribute="trailing" id="JBs-od-adl"/>
+                            <constraint firstItem="tK1-0l-BQl" firstAttribute="top" secondItem="P82-mr-ggG" secondAttribute="top" id="WME-Gi-DuH"/>
+                            <constraint firstItem="tK1-0l-BQl" firstAttribute="bottom" secondItem="eYN-Ka-5by" secondAttribute="top" id="bOD-EK-b5X"/>
+                            <constraint firstItem="rZh-jL-brC" firstAttribute="trailing" secondItem="tK1-0l-BQl" secondAttribute="trailing" id="bVZ-QO-cZx"/>
+                            <constraint firstItem="rZh-jL-brC" firstAttribute="bottom" secondItem="eYN-Ka-5by" secondAttribute="bottom" id="eCT-hS-cir"/>
+                            <constraint firstItem="80Z-dT-CHd" firstAttribute="top" secondItem="P82-mr-ggG" secondAttribute="top" id="hvQ-pe-Ib5"/>
+                            <constraint firstItem="tK1-0l-BQl" firstAttribute="leading" secondItem="rZh-jL-brC" secondAttribute="leading" id="mSn-gw-GcR"/>
+                            <constraint firstItem="eYN-Ka-5by" firstAttribute="leading" secondItem="P82-mr-ggG" secondAttribute="leading" id="x0o-xi-yRA"/>
+                            <constraint firstAttribute="trailing" secondItem="80Z-dT-CHd" secondAttribute="trailing" id="z8P-fR-6tq"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="arView" destination="tK1-0l-BQl" id="exx-gd-FmA"/>
+                        <outlet property="difficultyButton" destination="hvR-qB-adA" id="5jV-By-nZG"/>
+                        <outlet property="infectionHandlerLabel" destination="iFg-hX-JQ1" id="h5I-G2-eab"/>
+                        <outlet property="infectionTitleLabel" destination="eRJ-W9-gvY" id="AGG-47-abk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OgS-Iq-xpG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-20.289855072463769" y="759.375"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

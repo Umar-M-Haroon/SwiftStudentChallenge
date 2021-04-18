@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "InfectionGraphKit",
+        "repositoryURL": "https://github.com/Umar-M-Haroon/InfectionGraphKit.git",
+        "state": {
+          "branch": null,
+          "revision": "41a28dd66395acf1f09a8d0ff6a4fcc7cf177db6",
+          "version": "0.1.11"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
