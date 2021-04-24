@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D96675C262C07CE004AED02 /* ViewController+RKExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D96675B262C07CE004AED02 /* ViewController+RKExtensions.swift */; };
+		1D96675F262C3ADB004AED02 /* StackedBarChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D96675D262C3ADB004AED02 /* StackedBarChart.swift */; };
+		1D966760262C3ADB004AED02 /* BarChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D96675E262C3ADB004AED02 /* BarChart.swift */; };
 		1DB8A298262BCEE70082396A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB8A297262BCEE70082396A /* AppDelegate.swift */; };
 		1DB8A29A262BCEE70082396A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB8A299262BCEE70082396A /* SceneDelegate.swift */; };
 		1DB8A29C262BCEE70082396A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB8A29B262BCEE70082396A /* ViewController.swift */; };
@@ -20,6 +23,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D96675B262C07CE004AED02 /* ViewController+RKExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+RKExtensions.swift"; sourceTree = "<group>"; };
+		1D96675D262C3ADB004AED02 /* StackedBarChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackedBarChart.swift; sourceTree = "<group>"; };
+		1D96675E262C3ADB004AED02 /* BarChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChart.swift; sourceTree = "<group>"; };
 		1DB8A294262BCEE70082396A /* ARTest2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARTest2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DB8A297262BCEE70082396A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1DB8A299262BCEE70082396A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,11 +72,14 @@
 		1DB8A296262BCEE70082396A /* ARTest2 */ = {
 			isa = PBXGroup;
 			children = (
+				1D96675E262C3ADB004AED02 /* BarChart.swift */,
+				1D96675D262C3ADB004AED02 /* StackedBarChart.swift */,
 				1DB8A2B0262BDE280082396A /* CustomDifficultyView.swift */,
 				1DB8A2B1262BDE280082396A /* ResultsView.swift */,
 				1DB8A297262BCEE70082396A /* AppDelegate.swift */,
 				1DB8A299262BCEE70082396A /* SceneDelegate.swift */,
 				1DB8A29B262BCEE70082396A /* ViewController.swift */,
+				1D96675B262C07CE004AED02 /* ViewController+RKExtensions.swift */,
 				1DB8A29D262BCEE70082396A /* Main.storyboard */,
 				1DB8A2A0262BCEE80082396A /* Assets.xcassets */,
 				1DB8A2A2262BCEE80082396A /* LaunchScreen.storyboard */,
@@ -163,7 +172,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D966760262C3ADB004AED02 /* BarChart.swift in Sources */,
 				1DB8A29C262BCEE70082396A /* ViewController.swift in Sources */,
+				1D96675C262C07CE004AED02 /* ViewController+RKExtensions.swift in Sources */,
+				1D96675F262C3ADB004AED02 /* StackedBarChart.swift in Sources */,
 				1DB8A298262BCEE70082396A /* AppDelegate.swift in Sources */,
 				1DB8A2B2262BDE280082396A /* CustomDifficultyView.swift in Sources */,
 				1DB8A2B3262BDE280082396A /* ResultsView.swift in Sources */,
@@ -244,7 +256,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -299,7 +311,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

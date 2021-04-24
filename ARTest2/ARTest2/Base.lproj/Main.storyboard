@@ -20,10 +20,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <arView multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tK1-0l-BQl">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
-                            </arView>
-                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="80Z-dT-CHd">
+                            <visualEffectView opaque="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="80Z-dT-CHd">
                                 <rect key="frame" x="314" y="0.0" width="100" height="125"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="LVb-Bb-QIe">
                                     <rect key="frame" x="0.0" y="0.0" width="100" height="125"/>
@@ -102,6 +99,9 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
+                            <arView multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tK1-0l-BQl">
+                                <rect key="frame" x="0.0" y="-39" width="414" height="813"/>
+                            </arView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="rZh-jL-brC"/>
                         <constraints>
