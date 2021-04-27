@@ -12,7 +12,7 @@ struct BarChartData {
     var vaccinated: Int
     var infected: Int
     var nonInfected: Int {
-        totalNodes - quarantined - vaccinated - infected
+        totalNodes - quarantined - vaccinated
     }
 }
 struct StackedBarChart: View {
@@ -22,9 +22,9 @@ struct StackedBarChart: View {
             VStack(spacing: 0) {
                 HStack {
                     if chartData.infected != 0 {
-                        Text("\(chartData.infected)")
-                            .frame(width: 30)
-                            .padding(.trailing, 4)
+//                        Text("\(chartData.infected)")
+//                            .frame(width: 30)
+//                            .padding(.trailing, 4)
                     }
                     Rectangle()
                         .fill(Color.red)
@@ -32,9 +32,9 @@ struct StackedBarChart: View {
                 }
                 HStack {
                     if chartData.quarantined != 0 {
-                        Text("\(chartData.quarantined)")
-                            .frame(width: 30)
-                            .padding(.trailing, 4)
+//                        Text("\(chartData.quarantined)")
+//                            .frame(width: 30)
+//                            .padding(.trailing, 4)
                     }
                     Rectangle()
                         .fill(Color.green)
@@ -42,9 +42,9 @@ struct StackedBarChart: View {
                 }
                 HStack {
                     if chartData.vaccinated != 0 {
-                    Text("\(chartData.vaccinated)")
-                        .frame(width: 30)
-                        .padding(.trailing, 4)
+//                    Text("\(chartData.vaccinated)")
+//                        .frame(width: 30)
+//                        .padding(.trailing, 4)
                     }
                     Rectangle()
                         .fill(Color.blue)
@@ -52,24 +52,30 @@ struct StackedBarChart: View {
                 }
                 if chartData.nonInfected != chartData.totalNodes {
                     HStack {
-                        Text("\(chartData.nonInfected)")
-                            .frame(width: 30)
-                            .padding(.trailing, 4)
+//                        Text("\(chartData.nonInfected)")
+//                            .frame(width: 30)
+//                            .padding(.trailing, 4)
                         Rectangle()
                             .fill(Color.gray)
                             .frame(width: 20, height: CGFloat(chartData.nonInfected) * 3)
                     }
                 } else {
                     VStack {
-                        Text("\(chartData.nonInfected)")
-                            .frame(width: 30)
-                            .padding(.trailing, 4)
+//                        Text("\(chartData.nonInfected)")
+//                            .frame(width: 30)
+//                            .padding(.trailing, 4)
                         Rectangle()
                             .fill(Color.gray)
                             .frame(width: 20, height: CGFloat(chartData.nonInfected) * 3)
                             .cornerRadius(8)
                     }
                 }
+            }
+            VStack {
+                Text("Infected: \(chartData.infected)")
+                Text("Quarantined: \(chartData.quarantined)")
+                Text("Vaccinated: \(chartData.vaccinated)")
+                Text("Non-Infected: \(chartData.nonInfected)")
             }
             Legend()
         }
@@ -81,7 +87,7 @@ struct Charts: View {
     var body: some View {
         HStack(alignment: .bottom, spacing: nil) {
             StackedBarChart(chartData: chartData)
-            BarChart(removed: Double(chartData.totalNodes - chartData.nonInfected), totalNodes: Double(chartData.totalNodes))
+            BarChart(removed: Double(chartData.infected), totalNodes: Double(chartData.totalNodes))
                 .frame(alignment: .bottom)
         }
         .frame(alignment: .bottom)
@@ -107,35 +113,39 @@ struct Legend: View {
 //            }
             HStack {
                 RoundedRectangle(cornerRadius: 4)
-                    .frame(width: 25, height: 25, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    .frame(width: 15, height: 15, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     .foregroundColor(Color.blue)
                 
                 Text("Vaccinated")
+                    .font(.caption)
                     .frame(width: 125, alignment: Alignment.leading)
                     .multilineTextAlignment(.leading)
             }
             HStack {
                 RoundedRectangle(cornerRadius: 4)
-                    .frame(width: 25, height: 25, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    .frame(width: 15, height: 15, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     .foregroundColor(Color.green)
                 
                 Text("Quarantined")
+                    .font(.caption)
                     .frame(width: 125, alignment: Alignment.leading)
             }
             HStack {
                 RoundedRectangle(cornerRadius: 4)
-                    .frame(width: 25, height: 25, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    .frame(width: 15, height: 15, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     .foregroundColor(Color.gray)
                 
                 Text("Non-Infected")
+                    .font(.caption)
                     .frame(width: 125, alignment: Alignment.leading)
             }
             HStack {
                 RoundedRectangle(cornerRadius: 4)
-                    .frame(width: 25, height: 25, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    .frame(width: 15, height: 15, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     .foregroundColor(Color.red)
                 
                 Text("Infected")
+                    .font(.caption)
                     .frame(width: 125, alignment: Alignment.leading)
             }
         }

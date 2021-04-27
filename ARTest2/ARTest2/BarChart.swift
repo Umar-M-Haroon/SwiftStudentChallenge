@@ -19,7 +19,8 @@ struct BarChart: View {
             Rectangle()
                 .fill(Color.blue)
                 .frame(width: 20, height: CGFloat(total)*3)
-                .cornerRadius(8)
+                .cornerRadius(4)
+            Text("Total Saved %")
         }
     }
 }

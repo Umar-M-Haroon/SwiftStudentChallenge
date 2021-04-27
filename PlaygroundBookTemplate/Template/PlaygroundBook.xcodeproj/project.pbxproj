@@ -236,6 +236,7 @@
 		5E086DC12051C5A7004D8D25 /* PlaygroundBook */ = {
 			isa = PBXGroup;
 			children = (
+				5E0E37542065A065008FA4BE /* README.md */,
 				5E086DCF2051DF0F004D8D25 /* Manifest.plist */,
 				5E70679B23678D810094BDEF /* Modules */,
 				5E7067A023678DED0094BDEF /* UserModules */,
@@ -274,7 +275,6 @@
 		5E2A7ADC204F611300F4E17A = {
 			isa = PBXGroup;
 			children = (
-				5E0E37542065A065008FA4BE /* README.md */,
 				5E086DC12051C5A7004D8D25 /* PlaygroundBook */,
 				5EA2E3BE2056F35A00416A35 /* LiveViewTestApp */,
 				5E2A7AE3204F628B00F4E17A /* Config Files */,

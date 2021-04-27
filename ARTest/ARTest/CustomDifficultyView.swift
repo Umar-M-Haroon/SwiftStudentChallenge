@@ -28,29 +28,31 @@ struct CustomDifficultyView: View {
         }
     }
     var body: some View {
-        VStack {
-            
-            Text("Infection Rate: \(infectionRate, specifier: "%0.2f")")
-            Slider(value: $infectionRate, in: 0.1...1.0) {
-                Text("Infection Rate")
+        ScrollView {
+            VStack {
+                
+                Text("Infection Rate: \(infectionRate, specifier: "%0.2f")")
+                Slider(value: $infectionRate, in: 0.1...1.0) {
+                    Text("Infection Rate")
+                }
+                .padding(.horizontal, 70)
+                NumberStepper(value: $numberOfVaccines, min: 1, max: 50, textInfo: vaccinesLabel)
+                NumberStepper(value: $numberOfStartingInfected, min: 1, max: 50, textInfo: startedInfectedLabel)
+                NumberStepper(value: $numberOfAntiVax, min: 0, max: 50, textInfo: antiVaxLabel)
+                NumberStepper(value: $numberOfNodes, min: 10, max: 50, textInfo: numberNodesLabel)
+                Button(action: {
+                    outputAction(numberOfNodes, Difficulty(difficultyLevel: .custom(numberOfStartingInfected, infectionRate, numberOfVaccines, numberOfAntiVax)))
+                }, label: {
+                    Text("Save")
+                        .padding(.horizontal, 40)
+                        .padding(.vertical, 10)
+                        .foregroundColor(.white)
+                        .background(
+                            RoundedRectangle(cornerRadius: 8).foregroundColor(.blue)
+                        )
+                        .frame(height: !hasError ? nil : 0)
+                })
             }
-            .padding(.horizontal, 70)
-            NumberStepper(value: $numberOfVaccines, min: 1, max: 50, textInfo: vaccinesLabel)
-            NumberStepper(value: $numberOfStartingInfected, min: 1, max: 50, textInfo: startedInfectedLabel)
-            NumberStepper(value: $numberOfAntiVax, min: 0, max: 50, textInfo: antiVaxLabel)
-            NumberStepper(value: $numberOfNodes, min: 10, max: 50, textInfo: numberNodesLabel)
-            Button(action: {
-                outputAction(numberOfNodes, Difficulty(difficultyLevel: .custom(numberOfStartingInfected, infectionRate, numberOfVaccines, numberOfAntiVax)))
-            }, label: {
-                Text("Save")
-                    .padding(.horizontal, 40)
-                    .padding(.vertical, 10)
-                    .foregroundColor(.white)
-                    .background(
-                        RoundedRectangle(cornerRadius: 8).foregroundColor(.blue)
-                    )
-                    .frame(height: !hasError ? nil : 0)
-            })
         }
         .background(
             ZStack {

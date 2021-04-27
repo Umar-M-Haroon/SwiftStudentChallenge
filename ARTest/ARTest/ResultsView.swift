@@ -47,8 +47,9 @@ struct ResultsView: View {
         .background(
             ZStack {
                 VisualEffectView(style: UIBlurEffect.Style.regular)
-                Capsule(style: /*@START_MENU_TOKEN@*/.continuous/*@END_MENU_TOKEN@*/)
-                    .foregroundColor(.secondary)
+                    .cornerRadius(20)
+//                Capsule(style: /*@START_MENU_TOKEN@*/.continuous/*@END_MENU_TOKEN@*/)
+//                    .foregroundColor(.secondary)
             }
         )
     }

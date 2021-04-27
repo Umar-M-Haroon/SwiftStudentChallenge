@@ -27,7 +27,7 @@ class ViewController: UIViewController {
     var sphereRadius: Float = 0.0127 // half an inch or 1.27 cm
     var sphereObj = ModelEntity(mesh: .generateSphere(radius: 0.0127), materials: [SimpleMaterial(color: .darkGray, isMetallic: true)])
     var ids: [String] = []
-    var anchorEntity = AnchorEntity.init(plane: AnchoringComponent.Target.Alignment.horizontal, classification: AnchoringComponent.Target.Classification.any, minimumBounds: SIMD2<Float>(0.0, 0.0))
+    var anchorEntity = AnchorEntity.init(plane: AnchoringComponent.Target.Alignment.horizontal, classification: AnchoringComponent.Target.Classification.table, minimumBounds: SIMD2<Float>(0.0, 0.0))
     var numberOfNodes = 30
     var infectionHandler: InfectionHandler!
     var graph: Graph!
@@ -36,7 +36,7 @@ class ViewController: UIViewController {
     var easyDifficulty = Difficulty(difficultyLevel: .custom(1, 0.7, 2, 0))
     var mediumDifficulty = Difficulty(difficultyLevel: .custom(2, 0.7, 7, 0))
     var hardDifficulty = Difficulty(difficultyLevel: .custom(3, 0.7, 9, Int.random(in: 1...2)))
-    var herdDifficulty = Difficulty(difficultyLevel: .custom(3, 0.7, 20, Int.random(in: 1...2)))
+    var herdDifficulty = Difficulty(difficultyLevel: .custom(3, 0.7, 30, Int.random(in: 1...2)))
     var antiVaxxerNodeIDs: Set<String> = []
     
     var difficultyInUse: Difficulty!
@@ -54,8 +54,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCoachingOverlay()
-        arView.cameraMode = .ar
         setupLabel()
+        arView.renderOptions.insert([.disableDepthOfField, .disableMotionBlur, .disablePersonOcclusion, .disableGroundingShadows])
         easyAction = UIAction(title: "Easy", handler: { (act) in
             self.setupAR(n: 30, diff: self.easyDifficulty)
         })
@@ -66,7 +66,7 @@ class ViewController: UIViewController {
             self.setupAR(n: 50, diff: self.hardDifficulty)
         })
         herdAction = UIAction(title: "Herd Immunity",  state: difficultyInUse == herdDifficulty ? .on : .off, handler: { (act) in
-            self.setupAR(n: 40, diff: self.herdDifficulty)
+            self.setupAR(n: 45, diff: self.herdDifficulty)
         })
         customAction = UIAction(title: "Custom", handler: { (act) in
             if !self.isShowingCustomView {
@@ -122,8 +122,8 @@ class ViewController: UIViewController {
         vc.view.translatesAutoresizingMaskIntoConstraints = false
         vc.view.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 0).isActive = true
         vc.view.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0).isActive = true
-//        vc.view.trailingAnchor.constraint(greaterThanOrEqualTo: self.view.trailingAnchor, constant: 20).isActive = true
-//        vc.view.leadingAnchor.constraint(greaterThanOrEqualTo: self.view.leadingAnchor, constant: 20).isActive = true
+        vc.view.trailingAnchor.constraint(greaterThanOrEqualTo: self.view.trailingAnchor, constant: 20).isActive = true
+        vc.view.leadingAnchor.constraint(greaterThanOrEqualTo: self.view.leadingAnchor, constant: 20).isActive = true
         vc.view.backgroundColor = .clear
     }
     func setupAR(n: Int?, diff: Difficulty) {
@@ -137,8 +137,12 @@ class ViewController: UIViewController {
         self.infectionHandler = InfectionHandler(graph: self.graph, difficulty: self.difficultyInUse)
         if let config = arView.session.configuration {
             self.anchorEntity.children.removeAll()
-            self.anchorEntity = AnchorEntity()
-            self.arView.session.run(config, options: [.resetTracking, .removeExistingAnchors])
+//            let t = self.anchorEntity.transform
+//            let p = self.anchorEntity.position
+//            self.anchorEntity = AnchorEntity()
+//            self.anchorEntity.position = p
+//            self.anchorEntity.transform = t
+//            self.arView.session.run(config, options: [ ])
         
         }
         self.resultModel.vaccines = self.difficultyInUse.numberOfVaccines
@@ -245,7 +249,7 @@ class ViewController: UIViewController {
         }
         done = infectionHandler.checkIfDone()
 //        resultModel.vaccines = self.difficultyInUse.numberOfVaccines
-        resultModel.isQuarantined = true
+//        resultModel.isQuarantined = true
         resultModel.quarantined = infectionHandler.graph.nodes.filter({$0.metaData == .quarantined}).count
         resultModel.infected = infectionHandler.graph.nodes.filter({$0.SIRState == .Infected}).count
         resultModel.total = self.numberOfNodes
@@ -258,7 +262,6 @@ class ViewController: UIViewController {
             self.setupAR(n: nil, diff: self.difficultyInUse)
         }
         resultModel.isComplete = false
-        self.isLoadingIndicator.stopAnimating()
     }
     @IBAction func difficultyButtonPressed(sender: UIButton) {
         sender.menu = UIMenu(title: "", image: nil, identifier: nil, options: .displayInline, children: [UIAction(title: "Easy", state: .on, handler: { (_) in
